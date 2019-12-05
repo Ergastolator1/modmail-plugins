@@ -7,7 +7,6 @@ from core.models import PermissionLevel
 
 
 class Tag(commands.Cog):
-    """Plugin per i tag!"""
     def __init__(self, bot):
         self.bot: discord.Client = bot
         self.db = bot.plugin_db.get_partition(self)
