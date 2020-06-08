@@ -29,6 +29,7 @@ class Tag(commands.Cog):
             await ctx.send(f":x: | Un tag con il nome `{name}` già esiste!")
             return
         else:
+            ctx.message.content = content
             await self.db.insert_one(
                 {
                     "name": name,
