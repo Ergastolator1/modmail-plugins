@@ -59,11 +59,12 @@ class Tag(commands.Cog):
             await ctx.send(f":x: | Il tag con il nome `{name}` non esiste!")
             return
         else:
+            ctx.message.content = content
             member: discord.Member = ctx.author
             if ctx.author.id == tag["author"] or member.guild_permissions.manage_guild:
                 await self.db.find_one_and_update(
                     {"name": name},
-                    {"$set": {"content": content, "updatedAt": datetime.utcnow()}},
+                    {"$set": {"content": ctx.message.clean_content, "updatedAt": datetime.utcnow()}},
                 )
 
                 await ctx.send(
